@@ -1,0 +1,81 @@
+h1{
+    font-family: TitleFont;
+}
+
+h3{
+    font-family: TitleFontSlim;
+}
+
+@font-face {
+    font-family: TitleFont;
+    src: url("../fonts/Fontspring-black.otf");
+}
+
+@font-face {
+    font-family: TitleFontSlim;
+    src: url("../fonts/Fontspring-regular.otf");
+}
+
+body{
+    position: relative;
+    background-color:  #E4D6A7;
+    background-image: url(../images/wave.svg);
+    background-repeat: no-repeat;
+    background-position: bottom;
+    background-attachment: fixed;
+}
+
+.section2{
+    padding: 10px;
+}
+
+p{
+    margin-left: 10px;
+}
+.Field{
+    margin-top: -20px;
+
+
+}
+
+.section1{
+    background-color: #960200;
+    color: #FFFFB3;
+    padding-bottom: 20px;
+    font-family: TitleFont;
+    position: relative;
+}
+
+.section1::before {
+    content: "";
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    bottom: 0px;
+    left: 0px;
+    height: 100%;
+    background-image: url(../images/bg.png) ,url(../images/bg2.png);
+    background-repeat: no-repeat ,repeat;
+    background-size: cover;
+    opacity: 0.12;
+    z-index: 1;
+}
+
+.section1::after {
+    content: "";
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    bottom: 0px;
+    left: 0px;
+    height: 100%;
+    z-index: 2;
+}
+
+.section1 h1, .section1 h4 {
+    size: 260px;
+    position: relative;
+    z-index: 3;
+    opacity: 1;
+}
+

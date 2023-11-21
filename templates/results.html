@@ -1,0 +1,88 @@
+{% extends "Base_Class.html" %}
+{% block title %}Results{% endblock%}
+
+{% block header %}Insights on your Energy Consumption{% endblock %}
+{% block header_followup %}*The results may not <br>accurately reflect the true state of affairs{% endblock %}
+
+
+{% block Main_content %}
+  <div class="section2 container-fluid">
+    <div class="row">
+
+      <div class="col">
+        <div class = "row infoBold" > <b>Similar type dwellings</b> </div> <br>
+
+        <div class ="col info" style=" border-right: 1px solid;">
+
+            {% if not(plots.patches) :%}
+              <div class="d-flex justify-content-center">
+                    <div style = "border: 3px solid ; width: 20px ;height: 20px; background-color: #FEFEB4"></div>
+                    <i style="margin-top: -10px; padding-left: 5px;">At what level should your consumption be</i>
+              </div>
+
+              <div class="d-flex justify-content-center">
+                  <div style = "border: 3px solid ; width: 20px ;height: 20px; background-color: #ffa600"></div>
+                  <i style="margin-top: -10px; padding-left: 5px;">What is the current level</i>
+              </div>
+            {% else: %}
+              <div class="d-flex justify-content-center">
+                    <div style = "border: 3px solid ; width: 20px ;height: 20px; background-color: #FEFEB4"></div>
+                    <i style="margin-top: -10px; padding-left:5px;">Your consumption level</i>
+              </div>
+            {% endif %}
+        <div class="row d-flex justify-content-center">
+          {{ plots.plot_slot1 | safe }}
+        </div>
+
+      </div>
+    </div>
+
+      <div class="col">
+        <div class = "row infoBold"> <b>Overall consumption</b> </div> <br>
+
+          <div class = "col info">
+            <i>
+              {% if actual > pred + (pred*10)/100 : %}
+                Based on your energy usage, it appears that your overall consumption is <b>High</b>.<br> <br>
+                It is important to be mindful of your electric consumption and take steps to reduce it in the future.
+                These actions can lead to significant savings on your energy bill
+                and a more sustainable lifestyle.
+              {% else %}
+                It seems that your energy usage is currently within <b>acceptable limits</b>. <br> <br>
+                However, it is important to remain mindful of your electric consumption
+                and take steps to maintain this level in the future.
+              {% endif %}
+            </i>
+        </div>
+      </div>
+
+      <div class="col">
+        <div class = "row infoBold"> <b>Compared to all dwellings</b> </div> <br>
+
+        <div class = "col info" style="border-left: 1px solid;">
+        <i>Your dwelling type is : <b>{{plots.dtype}}</b></i>
+          <div class="d-flex justify-content-center">
+            {{ plots.plot_slot3 | safe }}
+          </div>
+      </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="d-flex justify-content-center pt-3 pb-3 " >
+    <a class="pe-5" style="text-decoration:none" href="{{ url_for('form_page1') }} ">
+      <button class="buttonSub">
+        <span>Calculate again!</span>
+      </button>
+    </a>
+
+    <a class="pe-5" style="text-decoration:none" href="{{ url_for('home') }}">
+      <button class="buttonSub">
+        <span>Home page</span>
+      </button>
+    </a>
+  </div>
+{% endblock %}
+
+

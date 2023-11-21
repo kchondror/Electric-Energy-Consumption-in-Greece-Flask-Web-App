@@ -1,0 +1,92 @@
+h1{
+    font-family: TitleFont, serif;
+    -webkit-text-stroke: 2px black;
+}
+
+h3{
+    font-family: TitleFontSlim, serif;
+    font-weight: bold;
+}
+
+.section1{    
+    background-color: #960200;
+    color: #FFFFB3;
+    padding-bottom: 20px;
+    font-family: TitleFont, serif;
+    position: relative;
+
+}
+.section1::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    height: 100%;
+    background-image: url(../images/bg.png) ,url(../images/bg2.png);
+    background-repeat: no-repeat ,repeat;
+    background-size: cover;
+    opacity: 0.18;
+    z-index: 1;
+}
+
+.section1::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    height: 100%;
+    z-index: 2;
+}
+
+.section1 h1, .section1 h4 {
+    size: 260px;
+    position: relative;
+    z-index: 3;
+    opacity: 1;
+}
+
+.section1 button{
+  z-index: 3;
+  opacity: 1;
+}
+
+.section2{
+    padding-top: 20px;
+    padding-bottom: 50px;
+    border-color: black;
+    border-top: 2px solid;
+    border-bottom: 5px solid;
+}
+
+.infoBold{
+  font-size: 30px;
+  color: black;
+  text-align: center;
+  text-decoration: underline;
+}
+
+.info{
+  font-size: 25px;
+  color: black;
+  text-align: center;
+}
+
+.info [id="start"]{
+  font-size: 25px;
+  color: black;
+  text-align: center;
+}
+
+@font-face {
+  font-family: TitleFont;
+  src: url("../fonts/Fontspring-black.otf");
+}
+
+@font-face {
+  font-family: TitleFontSlim;
+  src: url("../fonts/Fontspring-regular.otf");
+}

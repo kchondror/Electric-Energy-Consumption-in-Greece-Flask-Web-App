@@ -1,0 +1,185 @@
+.buttonNext {
+    border-radius: 4px;
+    background-color: #960200;
+    border: none;
+    color: #fff;
+    padding: 16px;
+    width: 150px;   
+    transition: all 0.5s;
+    cursor: pointer;
+    
+    box-shadow: 0 10px 20px -8px rgba(0, 0, 0,.7);
+  }
+  
+.buttonNext{
+  border-radius: 10px;
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+
+.buttonNext:after {
+  border-radius: 10px;
+  content: '»';
+  position: absolute;
+  opacity: 0;  
+  top: 14px;
+  right: -20px;
+  transition: 0.5s;
+}
+
+.buttonNext:hover{
+  border-radius: 10px;
+  padding-right: 24px;
+  padding-left:8px;
+}
+
+.buttonNext:hover:after {
+  border-radius: 10px;
+  opacity: 1;
+  right: 10px;
+}
+
+
+.buttonPrev{
+  border-radius: 4px;
+  background-color: #960200;
+  border: none;
+  color: #fff;
+  width: 150px; 
+  padding: 16px;
+  transition: all 0.5s;
+  cursor: pointer;
+  box-shadow: 0 10px 20px -8px rgba(0, 0, 0,.7);
+}
+
+.buttonPrev{
+  border-radius: 10px;
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+
+.buttonPrev:after {
+  border-radius: 10px;
+  content: '«';
+  position: absolute;
+  opacity: 0;  
+  top: 14px;
+  left: -20px;
+  transition: 0.5s;
+}
+
+.buttonPrev:hover{
+  border-radius: 10px;
+  padding-left: 24px;
+  padding-right:8px;
+}
+
+.buttonPrev:hover:after {
+  border-radius: 10px;
+  opacity: 1;
+  left: 10px;
+}
+
+.buttonSub{
+  border-radius: 4px;
+  background-color: #960200;
+  border: none;
+  color: #fff;
+  width: 220px; 
+  padding: 16px;
+  transition: all 0.5s;
+  cursor: pointer;
+  box-shadow: 0 10px 20px -8px rgba(0, 0, 0,.7);
+}
+
+.buttonSub:hover{
+  border-radius: 10px;
+}
+
+.info-icon {
+  display: inline-block;
+  
+  width: 25px;
+  height: 25px;
+  background-image: url('../images/info.png');
+  background-size: cover;
+}
+
+.info-icon:hover + .info-container {
+  display: inline;
+}
+
+.info-container {
+  display: none;
+  position: absolute;
+
+  width: 340px;
+  height: auto;
+  margin-left: 10px;
+  padding: 10px;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.hidden {
+  display: none;
+}
+
+input[type=checkbox] + label {
+  position: absolute;
+}
+
+.close {
+  float: right;
+  color: #b94b45;
+  cursor: pointer;
+}
+
+.alert-wrapper {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 100%;
+}
+
+.alert-message {
+  border: 2px solid black;
+  color: black;
+  border-radius: 3px;
+  line-height: 30px;
+  display: block;
+  padding: 12px;
+  box-sizing: border-box;
+  z-index: 10;
+
+  box-shadow: 0 10px 50px rgba(0, 0, 0, 0.6);
+  background: #E4D6A7;
+  animation: closing 8s forwards ease-in-out, moving 8s forwards ease-in-out;
+}
+
+@keyframes closing {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes moving {
+  0%,
+  90% {
+    top: 10px;
+    right: 10px;
+  }
+  100% {
+    top: -100px;
+    right: 0;
+  }
+}

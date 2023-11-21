@@ -1,0 +1,106 @@
+{% extends "Base_Class.html" %}
+{% block title %}Home page{% endblock%}
+
+{% block header %}Electric Energy Consumption In Greece{% endblock %}
+{% block header_followup %}Clustering System <br>Based On Electricity Consumption Footprint{% endblock %}
+
+{% block Main_content %}
+{% if message != "None": %}
+    <div>
+      <input type="checkbox" class="hidden" >
+      <label class="alert-message">
+          {{ message }}
+      </label>
+    </div>
+{% endif %}
+
+
+<div class="section2 container-fluid">
+    <div class="row">
+
+        <div class="col">
+            <div class = "row infoBold"> <b>What is the primary purpose of this website?</b> </div>
+
+            <div class = "col info">
+                <br>
+                <i>This website provides you with insights on whether your total electricity usage is within optimal levels.</i>
+            </div>
+        </div>
+
+        <div class="col">
+            <div class = "row infoBold"> <b>Who created this website?</b> </div>
+
+            <div class = "col info">
+                <br>
+                <i>Developed by K. Chondrorrizos, under the supervision of Mr. D. Vrakas,
+                    as part of an undergraduate thesis titled: <br>
+                    "Development of a Residential Clustering System based on their Electricity Consumption Footprint."
+                </i>
+            </div>
+        </div>
+
+        <div class="col">
+            <div class = "row infoBold"> <b>What are the steps to utilize this website?</b> </div>
+
+            <div class = "col info">
+                <i>
+                    A) If you're a first-time user, click the button below and provide the required information.<br><br>
+                    B) If you've used the website before, enter your Energy ID in the field below to check for any updates.
+                </i>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="d-flex justify-content-center pt-2">
+
+    <div class="d-flex flex-column">
+
+        <div class="container mt-2  pe-5">
+          <div style="border: black solid; background-color: #E4D6A7;" class="card">
+            <div style="border-bottom: black solid;" class="card-header">
+
+                <div class="d-flex justify-content-start">
+                    <div style="padding-top: 5px;" class="pe-2">
+                        <span class="info-icon"></span>
+                        <div class="info-container">
+                            <p>This option is for users who have already used our system in the past.</p>
+                        </div>
+                    </div>
+                    <form id="IndexForm" method="post">
+                        <input style="width: 200px;" class="form-control Field" id="energyID" placeholder="Enter your Energy ID." name="energyID" required>
+                    </form>
+                </div>
+
+            </div>
+            <div class="card-body">
+                <a style="text-decoration:none ;padding-top: 10px" href=" {{ url_for('results') }}">
+                    <button form="IndexForm" type="submit"  class="buttonSub">
+                      <span>Check for updates!</span>
+                    </button>
+                </a>
+            </div>
+          </div>
+        </div>
+    </div>
+
+    <div class="d-flex flex-column ps-5 ">
+        <div class="container mt-2">
+          <div style="border: black solid; background-color: #E4D6A7;" class="card">
+            <div style="border-bottom: black solid;" class="card-header">
+                <div class = "info">
+                    <b>New Here?</b>
+                </div>
+            </div>
+            <div class="card-body">
+                <a style="text-decoration:none" href=" {{ url_for('form_page1') }}">
+                    <button style="width: 220px;" class="buttonNext">
+                      <span>Calculate Here!</span>
+                    </button>
+                </a>
+            </div>
+        </div>
+    </div>
+    </div>
+</div>
+{% endblock%}

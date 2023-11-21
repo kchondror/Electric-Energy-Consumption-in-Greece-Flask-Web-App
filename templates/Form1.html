@@ -1,0 +1,247 @@
+{% extends "Form_Class.html" %}
+{% block title %}Form 1 out of 2{% endblock%}
+{% block Body %}
+<div class = "container-fluid" >
+
+    <div class="container-fluid d-flex justify-content-between">
+        <h1 class="col">Fill the cells bellow</h1>
+
+        <div class="pt-2">
+            <a style="text-decoration:none" href=" {{ url_for('home') }}">
+                <button class="buttonPrev" style="border-radius: 10px;" >
+                  <span>Previous page</span>
+                </button>
+            </a>
+
+            <button form="form1" type="submit" class="buttonNext" style="border-radius: 10px;">
+                <span>Next page</span>
+            </button>
+
+        </div>
+    </div>
+    <form id="form1" method="POST">
+        <h3>Household Information:</h3>
+
+        <div style="border: 3px solid; border-radius: 10px; ">
+
+            <div class="d-flex section2">
+                <div class="row flex-fill">
+
+                    <div class="col d-flex flex-column justify-content-start">
+
+                        <div class="d-flex justify-content-start">
+                            <div>
+                                <span class="info-icon"></span>
+                                <div class="info-container">
+                                    <p>The type of your dwelling: <br>
+                                        a) Single family home (detached house),<br>
+                                        b) semi-detached house (a house sharing one common wall with another residence),<br>
+                                        c) townhome (a house sharing two common walls with other residences) and<br>
+                                        d) apartment (a single or multi floor residence in a block of flats)</p>
+                                </div>
+                            </div>
+                            <label for="dtype" class="form-label"><p>Dwelling type:</p></label>
+                        </div>
+                        <select id="dtype" name="dtype"  class="form-select Field" style="width: 300px;">
+                            {% for type in ["Family House","Semidetached","Townhome","Apartment"] %}
+                                {% if form_data.dtype == type : %}
+                                    <option selected> {{ type }} </option>
+                                {% else: %}
+                                    <option> {{type}} </option>
+                                {% endif %}
+                            {% endfor %}
+                        </select>
+                    </div>
+
+
+                    <div class="col d-flex flex-column justify-content-start">
+
+                        <div class="d-flex justify-content-start">
+                            <div>
+                                <span class="info-icon"></span>
+                                <div class="info-container">
+                                    <p>The year of construction or major renovation of the house.</p>
+                                </div>
+                            </div>
+                            <label for="age"  class="form-label"><p>Dwelling age:</p></label>
+                        </div>
+                        <select id="age" name="age" class="form-select Field" style="width: 300px;">
+                            {% for age in ["0 - 5","6 - 15","16 - 30","30+"] %}
+                                {% if form_data.age == age : %}
+                                    <option selected> {{ age }} </option>
+                                {% else: %}
+                                    <option> {{age}} </option>
+                                {% endif %}
+                            {% endfor %}
+                        </select>
+                    </div>
+
+
+                    <div class="col d-flex flex-column justify-content-start">
+                        <div class="d-flex justify-content-start">
+                            <div>
+                                <span class="info-icon"></span>
+                                <div class="info-container">
+                                    <p>Referring to whether the main source of heating for the house is electricity or not.</p>
+                                </div>
+                            </div>
+                            <label for="heating" class="form-label"><p>Electrical heating:</p></label>
+                        </div>
+
+                        <select id="heating" name="heating" class="form-select Field" style="width: 300px;">
+                            {% for heating in ["Yes" , "No"] %}
+                                {% if form_data.heating == heating : %}
+                                    <option selected> {{ heating }} </option>
+                                {% else: %}
+                                    <option> {{heating}} </option>
+                                {% endif %}
+                            {% endfor %}
+                        </select>
+                    </div>
+
+
+                </div>
+            </div>
+
+            <div class="d-flex section2">
+
+                <div class="row flex-fill">
+
+                    <div class="col d-flex flex-column justify-content-center">
+                        <label for="meters" class="form-label"><p>Dwelling m^2:</p></label>
+                        <input style="width: 400px;" type="number" class="form-control Field" id="meters" name="meters" placeholder="Area in square meters" value="{{ form_data.meters }}" min="0" required>
+                    </div>
+
+
+                    <div class="col d-flex flex-column justify-content-end">
+                        <label for="bedrooms" class="form-label"><p>Bedrooms:</p></label>
+                        <input style="width: 400px;" type="number" class="form-control Field" id="bedrooms" name="bedrooms" placeholder="Number of bedrooms" value="{{ form_data.bedrooms }}" min="0" required>
+                    </div>
+
+                    <div class="col d-flex flex-column justify-content-start"></div>
+
+                </div>
+            </div>
+        </div>
+
+        <h3 style="padding-top: 40px;" >Occupants Information:</h3>
+
+        <div style="border: 3px solid; border-radius: 10px;">
+
+            <div class="d-flex section2">
+                <div class="row flex-fill" style="border-bottom: 3px solid;">
+
+                    <div class="col d-flex flex-column justify-content-center" style="margin-bottom: 10px;">
+                        <label style="top: 10px;" for="occupants" class="form-label"><p>Occupants:</p></label>
+                        <input style="width: 300px;" type="number" class="form-control Field" id="occupants" placeholder="Number of occupants" value="{{ form_data.occupants }}" min="0" name="occupants" onkeyup="auto_fill_occupants()" required>
+                    </div>
+
+                    <div class="col d-flex flex-column justify-content-center" style="margin-bottom: 10px;" >
+                        <div class="d-flex justify-content-start">
+                            <div>
+                                <span class="info-icon"></span>
+                                <div class="info-container">
+                                    <p>The total annual income of the family in Euros.</p>
+                                </div>
+                            </div>
+                            <label for="income" class="form-label"><p>Income:</p></label>
+                        </div>
+
+                        <select id="income" name="income" class="form-select Field" style="width: 300px;">
+                            {% for income in ["0€ - 10.000€" , "10.001€ - 20.000€" , "20.001€ - 40.000€" , "40.001€ - 60.000€" ,"60.000€"] %}
+                                {% if form_data.income == income : %}
+                                    <option selected> {{ income }} </option>
+                                {% else: %}
+                                    <option> {{income}} </option>
+                                {% endif %}
+                            {% endfor %}
+                        </select>
+                    </div>
+
+                    <div class="col d-flex flex-column justify-content-center" ></div>
+                    <div class="col d-flex flex-column justify-content-center" ></div>
+
+                </div>
+            </div>
+
+
+
+            <div class="d-flex section2">
+                <div class="row flex-fill">
+
+
+                    <div class="col d-flex flex-column">
+                        <label for="children" class="form-label"><p>Children (0 – 10 years old):</p></label>
+                        <input style="width: 300px;" type="number" class="form-control Field" id="children" placeholder="Number of children" value="{{ form_data.children }}" min="0" name="children" onkeyup="auto_fill_occupants()" required>
+                    </div>
+
+
+                    <div class="col d-flex flex-column">
+                        <label for="teens" class="form-label"><p>Teenagers (11 – 18 years old):</p></label>
+                        <input style="width: 300px;" type="number" class="form-control Field" id="teens" placeholder="Number of teenagers" value="{{ form_data.teens }}" min="0" name="teens" onkeyup="auto_fill_occupants()" required>
+                    </div>
+
+                    <div class="col d-flex flex-column">
+                        <label for="adults" class="form-label"><p>Adults (19 – 69 years old):</p></label>
+                        <input style="width: 300px;" type="number" class="form-control Field" id="adults" placeholder="Number of Adults" value="{{ form_data.adults }}" min="0" name="adults" onkeyup="auto_fill_occupants()" required>
+                    </div>
+
+                    <div class="col d-flex flex-column">
+                        <label for="elders" class="form-label"><p>Elders (70 - years old):</p></label>
+                        <input style="width: 300px;" type="number" class="form-control Field" id="elders" placeholder="Number of Elders" value="{{ form_data.elders }}" min="0" name="elders" onkeyup="auto_fill_occupants()" required>
+                    </div>
+
+
+                </div>
+            </div>
+
+            <div class="d-flex section2">
+                <div class="row flex-fill">
+
+                    <div class="col d-flex flex-column">
+                        <label for="full" class="form-label"><p>Full Timers:</p></label>
+                        <input style="width: 350px;" type="number" class="form-control Field" id="full" placeholder="Occupants working in full time." value="{{ form_data.full }}" min="0" name="full" required>
+                    </div>
+
+                    <div class="col d-flex flex-column">
+                        <label for="part" class="form-label"><p>Part Timers:</p></label>
+                        <input style="width: 350px;" type="number" class="form-control Field" id="part" placeholder="Occupants working in part time." value="{{ form_data.part }}" min="0" name="part" required>
+                    </div>
+
+                    <div class="col d-flex flex-column">
+                        <div class="d-flex justify-content-start">
+                            <div>
+                                <span class="info-icon"></span>
+                                <div class="info-container">
+                                    <p>Number of occupants that have graduated from a university.</p>
+                                </div>
+                            </div>
+                            <label for="graduated" class="form-label"><p>Graduated:</p></label>
+                        </div>
+
+                        <input style="width: 350px;" type="number" class="form-control Field" id="graduated" placeholder="Occupants graduated from a university." value="{{ form_data.graduated }}" min="0" name="graduated" required>
+                    </div>
+
+                    <div class="col d-flex flex-column">
+                        <div class="d-flex justify-content-start">
+                            <div>
+                                <span class="info-icon"></span>
+                                <div class="info-container">
+                                    <p>Number of occupants that received a post-graduate degree (Masters or PhD).</p>
+                                </div>
+                            </div>
+                            <label for="post" class="form-label"><p>Post Graduated:</p></label>
+                        </div>
+
+                        <input style="width: 350px;" type="number" class="form-control Field" id="post" placeholder="Graduated with a post-graduate degree." value="{{ form_data.post }}" min="0" name="post" required>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </form>
+
+</div>
+<script src="{{ url_for('static', filename='Javascript/occupants.js')}}"></script>
+{% endblock %}
